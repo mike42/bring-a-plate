@@ -1,7 +1,0 @@
-<?php
-$config['database']['user'] = 'bringaplate';
-$config['database']['pass'] = 'GxZCnv9Cn7SWAMVU';
-$config['database']['host'] = 'localhost';
-$config['database']['db'] = 'bring_a_plate';
-
-?>
