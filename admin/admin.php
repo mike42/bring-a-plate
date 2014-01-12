@@ -75,9 +75,10 @@ switch($page) {
 				$final = array_pop($names);
 				if(count($names) == 0) {
 					$people = $final;
-				} else
-				$first = implode(", ", $names);
-				$people = $first . " and ".$final;	
+				} else {
+					$first = implode(", ", $names);
+					$people = $first . " and ".$final;
+				}
 			}
 			echo str_putcsv(array($invite['invitation_code'], $invite['invitation_name'], $people)) . "\n";
 		}
