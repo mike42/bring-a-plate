@@ -11,7 +11,7 @@ For the organiser, there is a special interface for creating the invitation link
 Set up
 ------
 The setup is quite typical of a PHP web app.
-- Import the database schema from lib/schema.sql and put the files on your webserver.
+- Import the database schema from lib/database/bring-a-plate.sql and put the files on your webserver.
 - Copy "site.example" to "site" and edit config.php to add your database settings.
 - Log in to your site (load 'admin.php') to verify that it's working.
 - Secure your admin.php (see below)
