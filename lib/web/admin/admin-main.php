@@ -7,8 +7,8 @@
 <link rel="icon" href="site/favicon.ico">
 
 <title>Engagement Admin</title>
-<link href="public/css/bootstrap.css" rel="stylesheet">
-<link href="public/css/sticky-footer-navbar.css" rel="stylesheet">
+<link href="../public/css/bootstrap.css" rel="stylesheet">
+<link href="../public/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
 
 <body data-spy="scroll" data-target="#nav-top">
@@ -56,7 +56,7 @@
 				foreach($data['invitations'] as $invitation) {
 					echo "<tr>\n";
 					// Code
-					echo "<td><a href=\"invitation.php?id=".$invitation['invitation_code']."\">".$invitation['invitation_code']."</a></td>\n";
+					echo "<td><a href=\"../invitation.php?id=".$invitation['invitation_code']."\">".$invitation['invitation_code']."</a></td>\n";
 					
 					// Family name
 					echo "<td>".BringAPlate::escHTML($invitation['invitation_name'])."</td>\n";
@@ -227,8 +227,8 @@
 		<input type="hidden" name="invitation_id" value="" id="invite-id" />
 	</form>
 	
-	<script src="public/js/jquery-1.10.2.min.js"></script>
-	<script src="public/js/bootstrap.min.js"></script>
+	<script src="../public/js/jquery-1.10.2.min.js"></script>
+	<script src="../public/js/bootstrap.min.js"></script>
 	<script>
 		function delPerson(personId) {
 			if(confirm('Delete person?')) {

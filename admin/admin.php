@@ -20,7 +20,7 @@ if(!function_exists('str_putcsv'))
 }
 
 /* Actual admin code below */
-require_once('lib/BringAPlate.php');
+require_once('../lib/BringAPlate.php');
 
 BringAPlate::init();
 
@@ -105,7 +105,7 @@ switch($page) {
 		$data['invitations'] = invitation_model::list_all();
 		$data['people'] = invitation_model::list_people();
 		$data['food'] = food_model::list_all(-1, false);
-		include(dirname(__FILE__) . "/lib/web/admin/admin-main.php");
+		include(dirname(__FILE__) . "/../lib/web/admin/admin-main.php");
 }
 
 ?>
