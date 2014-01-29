@@ -10,5 +10,6 @@ $content = array(
 		"map-text" => "Duis semper, arcu nec vestibulum malesuada, turpis eros pellentesque risus, sit amet vehicula turpis tortor at mauris.",
 		/* Click link -> embed on Google maps to get these */
 		"map-src" => "https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Melbourne,+Victoria,+Australia&amp;aq=0&amp;oq=melbourne,+aust&amp;sll=37.0625,-95.677068&amp;sspn=62.226996,134.472656&amp;ie=UTF8&amp;hq=&amp;hnear=Melbourne+Victoria,+Australia&amp;t=m&amp;z=10&amp;ll=-37.814107,144.96328&amp;output=embed",
-		"map-link" =>  "https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Melbourne,+Victoria,+Australia&amp;aq=0&amp;oq=melbourne,+aust&amp;sll=37.0625,-95.677068&amp;sspn=62.226996,134.472656&amp;ie=UTF8&amp;hq=&amp;hnear=Melbourne+Victoria,+Australia&amp;t=m&amp;z=10&amp;ll=-37.814107,144.96328");
+		"map-link" =>  "https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Melbourne,+Victoria,+Australia&amp;aq=0&amp;oq=melbourne,+aust&amp;sll=37.0625,-95.677068&amp;sspn=62.226996,134.472656&amp;ie=UTF8&amp;hq=&amp;hnear=Melbourne+Victoria,+Australia&amp;t=m&amp;z=10&amp;ll=-37.814107,144.96328",
+		"footer" => "Footer here");
 ?>
