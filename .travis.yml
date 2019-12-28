@@ -1,0 +1,14 @@
+---
+dist: bionic
+language: node_js
+node_js:
+  - "stable"
+
+cache:
+  directories:
+    - frontend/node_modules
+    - backend/venv
+
+script:
+  - ./build.sh
+...

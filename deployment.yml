@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bring-a-plate-deployment
+  labels:
+    app: bring-a-plate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bring-a-plate
+  template:
+    metadata:
+      labels:
+        app: bring-a-plate
+    spec:
+      containers:
+      - name: bring-a-plate
+        image: bring-a-plate:0.0.1
+        ports:
+        - containerPort: 80
+      - name: postgres
+        image: postgres:12
+        env:
+        # TODO externally reference a key
+        - name: POSTGRES_PASSWORD
+          value: ztzfIPIn8Dz
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bring-a-plate-service
+spec:
+  selector:
+      app: bring-a-plate
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
