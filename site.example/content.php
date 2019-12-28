@@ -1,7 +1,7 @@
 <?php 
 // Site content
 $content = array(
-		"title" => "Engagement Party",
+		"title" => "Example Event",
 		"lead" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo, ipsum eu iaculis ornare, purus orci malesuada felis, ut eleifend nulla nisi dictum libero. Morbi fermentum nec ligula quis vestibulum. Quisque non diam ante. Suspendisse varius vehicula erat elementum convallis. Etiam mattis sed nunc quis suscipit. Donec eget ullamcorper magna, ut mattis quam. Nullam nec augue sit amet augue porta adipiscing. Suspendisse potenti. Sed vehicula consectetur aliquam. Cras condimentum magna vel dapibus rutrum.",
 		"rsvp" => "Integer accumsan id magna rutrum sollicitudin. Aliquam tempus eros at nisi mollis, in pulvinar justo luctus. Phasellus lorem eros, congue et bibendum vel, semper eu nunc. Nam fringilla condimentum quam, ac tincidunt velit gravida non. Vivamus lacinia ornare velit porttitor mattis. Morbi at augue eu arcu iaculis commodo ac eleifend libero. Vestibulum lorem libero, tristique id arcu eget, molestie vulputate tellus.",
 		"food" => "Mauris non lacinia nisl, id ullamcorper sapien. Nullam varius feugiat lectus, in porttitor magna malesuada a. Etiam porttitor augue et suscipit ornare. Curabitur felis dui, gravida faucibus orci bibendum, lobortis fermentum orci. In hac habitasse platea dictumst. Sed mauris tortor, fringilla sollicitudin quam eget, sodales blandit velit. Curabitur tempor erat mauris, sed faucibus ligula vestibulum a. Aliquam iaculis lacus erat, sit amet egestas sapien venenatis sit amet. Curabitur suscipit, lorem vel egestas condimentum, arcu nisi tincidunt lorem, sed feugiat nunc diam et metus. Aenean elit neque, blandit id gravida eget, congue non augue.",

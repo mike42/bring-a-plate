@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../site/favicon.ico">
 
-<title>Engagement Admin</title>
+<title>Event Admin</title>
 <link href="../public/css/bootstrap.css" rel="stylesheet">
 <link href="../public/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
@@ -23,7 +23,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Engagement Party</a>
+					<a class="navbar-brand" href="#">Event Admin</a>
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
