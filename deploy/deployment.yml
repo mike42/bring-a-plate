@@ -20,21 +20,18 @@ spec:
         image: bring-a-plate:0.0.1
         ports:
         - containerPort: 80
-      - name: postgres
-        image: postgres:12
-        env:
-        # TODO externally reference a key
-        - name: POSTGRES_PASSWORD
-          value: ztzfIPIn8Dz
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: bring-a-plate-service
+  labels:
+    app: bring-a-plate
 spec:
   selector:
-      app: bring-a-plate
+    app: bring-a-plate
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 80
+

@@ -7,6 +7,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
+# Import apidoc for monkey patching
+from flask_restplus.apidoc import apidoc
+apidoc.url_prefix = '/api'
+
 Base = declarative_base()
 
 application = Flask(__name__)

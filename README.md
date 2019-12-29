@@ -28,9 +28,34 @@ The back-end is a Python (Flask) WSGI application. It does not need to be built,
 
 ## Deployment
 
-### Kubernetes/Docker deployment
+### Local Docker
 
-(Work in progress)
+To build a container image of `bring-a-plate` and start it locally:
+
+```bash
+docker build -t bring-a-plate:0.0.1 .
+docker run -p 8080:80 bring-a-plate:0.0.1
+```
+
+The app will then be accessible at `http://localhost:8080`.
+
+### Kubernetes cluster
+
+This repository also bundles a Kubnernetes deployment YML definition. Use the following command to build and deploy a `bring-a-plate` container image on a local Minikube cluster:
+
+```bash
+eval $(minikube docker-env)
+docker build -t bring-a-plate:0.0.1 .
+kubectl apply -f deploy/deployment.yml
+```
+
+You can then access the app on port 8080 on the relevant cluster IP (you may need `minikube tunnel` to make this IP visible from the local machine).
+
+```
+$ kubectl get service
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+bring-a-plate-service   ClusterIP   10.96.189.123   <none>        8080/TCP   6m54s
+```
 
 ### Manual installation
 
@@ -41,26 +66,26 @@ The following steps assume that you are running a recent Debian GNU/Linux or Ubu
 
 Install dependencies:
 
-```
+```bash
 sudo apt-get install apache2 libapache2-mod-wsgi-py3
 ```
 
 Copy in the front-end:
 
-```
+```bash
 sudo cp -Rv frontend/build/* /var/www/html/
 ```
 
 Place the back-end somewhere outside the webroot:
 
-```
+```bash
 sudo mkdir -p /var/www/bring-a-plate
 sudo cp -Rv backend/* /var/www/bring-a-plate
 ```
 
 Add these lines to `/etc/apache2/sites-enabled/000-default.conf`, just before `</VirtualHost>`
 
-```
+```bash
 WSGIDaemonProcess bring-a-plate python-home=/var/www/bring-a-plate/venv
 WSGIProcessGroup bring-a-plate
 WSGIApplicationGroup %{GLOBAL}
@@ -72,7 +97,7 @@ WSGIScriptAlias /api /var/www/bring-a-plate/application.py/api
 
 Restart apache.
 
-```
+```bash
 systemctl restart apache2
 ```
 
