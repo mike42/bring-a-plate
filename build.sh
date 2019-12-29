@@ -1,10 +1,12 @@
 #!/bin/bash
 set -exu -o pipefail
 
+# Build frontend
 (cd frontend && \
     npm install &&
     npm run-script build)
 
+# Build back-end
 (cd backend && \
     python3 -m venv venv && \
     ./venv/bin/pip3 install -r requirements.txt)

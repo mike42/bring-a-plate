@@ -9,19 +9,19 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-app = Flask(__name__)
+application = Flask(__name__)
 blueprint = Blueprint('api', __name__, url_prefix='/api')
 
 api = Api(blueprint, version='1.0', title='Bring a Plate',
           description='REST API for event management.')
-app.register_blueprint(blueprint)
+application.register_blueprint(blueprint)
 
 dish = api.namespace('dish', description='Dish operations')
 event = api.namespace('event', description='Event operations')
 allergen = api.namespace('allergen', description='Allergen operations')
 dietaryRequirement = api.namespace('requirement', description='Dietary requirement operations')
 
-@app.route("/")
+@application.route("/")
 def home():
     return "This is an API service, try /api"
 
@@ -79,4 +79,4 @@ class Address(Base):
 if __name__ == "__main__":
     engine = create_engine('sqlite:///bring_a_plate.db')
     Base.metadata.create_all(engine)
-    app.run()
+    application.run()
