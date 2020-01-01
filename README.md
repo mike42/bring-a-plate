@@ -21,9 +21,13 @@ The front-end is a Javascript (React) single-page application. Build it as follo
 The back-end is a Python (Flask) WSGI application. It does not need to be built, but dependencies will need to be loaded into a virtual env.
 
 ```bash
-(cd backend && \
+(export FLASK_APP=application.py && \
+    cd backend && \
     python3 -m venv venv && \
-    ./venv/bin/pip3 install -r requirements.txt)
+    ./venv/bin/pip install -r requirements.txt && \
+    ./venv/bin/flask db init && \
+    ./venv/bin/flask db migrate && \
+    ./venv/bin/flask db upgrade)
 ```
 
 ## Deployment
@@ -86,11 +90,11 @@ sudo cp -Rv backend/* /var/www/bring-a-plate
 Add these lines to `/etc/apache2/sites-enabled/000-default.conf`, just before `</VirtualHost>`
 
 ```bash
-WSGIDaemonProcess bring-a-plate python-home=/var/www/bring-a-plate/venv
+WSGIDaemonProcess bring-a-plate home=/var/www/bring-a-plate python-home=/var/www/bring-a-plate/venv
 WSGIProcessGroup bring-a-plate
 WSGIApplicationGroup %{GLOBAL}
 WSGIScriptAlias /api /var/www/bring-a-plate/application.py/api
-<Directory /some/path/project>
+<Directory /var/www/bring-a-plate/>
     Require all granted
 </Directory>
 ```

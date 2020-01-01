@@ -1,0 +1,7 @@
+backend/bring_a_plate.db
+backend/migrations
+backend/venv
+frontend/node_modules
+.git
+__pycache__
+
