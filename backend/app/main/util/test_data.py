@@ -1,5 +1,9 @@
+from datetime import datetime
+
 from app.main import db
 from app.main.model.allergen import Allergen
+from app.main.model.host import Host
+from app.main.model.invitation import Invitation
 from app.main.model.special_preparation import SpecialPreparation
 
 
@@ -21,4 +25,14 @@ def go():
         db.session.add(SpecialPreparation(name="Tasty food"))
         db.session.add(SpecialPreparation(name="Vegan"))
         db.session.add(SpecialPreparation(name="Vegetarian"))
+    if not Invitation.query.all():
+        db.session.add(Invitation(name="Smith", code='example1'))
+        db.session.add(Invitation(name="Jones", code='example2'))
+    if not Host.query.all():
+        db.session.add(Host(
+            username='user@example.com',
+            password='example',
+            registered_on=datetime.utcnow()
+        ))
+
     db.session.commit()

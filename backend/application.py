@@ -2,12 +2,13 @@ from flask_migrate import Migrate
 
 from app import blueprint
 from app.main import create_app, db
-from app.main.model import user, allergen
+from app.main.service.login_service import login_manager
 from app.main.util import test_data
 
 application = create_app()
 application.register_blueprint(blueprint)
 application.app_context().push()
+login_manager.init_app(application)
 
 migrate = Migrate(application, db)
 

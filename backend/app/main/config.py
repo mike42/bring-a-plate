@@ -11,6 +11,10 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', ''.join(random.choices(string.ascii_uppercase + string.digits, k=20)))
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + basedir + '/../../bring_a_plate.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    RESTPLUS_MASK_SWAGGER = False
+    SESSION_COOKIE_HTTPONLY = True
+    REMEMBER_COOKIE_HTTPONLY = True
+    RESTPLUS_VALIDATE = True
     DEBUG = False
 
 
