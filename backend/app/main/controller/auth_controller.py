@@ -1,5 +1,5 @@
 from flask import request
-from flask_login import logout_user, login_user, current_user, login_required
+from flask_login import logout_user, login_user, current_user
 from flask_restplus import Resource, Namespace, fields
 
 from app.main.model.host import Host
@@ -26,7 +26,9 @@ class AuthResource(Resource):
         """
         Retrieve information about the active user
         """
-        # TODO define data structure here
+        # TODO define data structure here so that the front-end knows whether to display a login box
+        if current_user.is_anonymous:
+            return {'message': 'Not authenticated'}
         return {'message': current_user.id}
 
 
