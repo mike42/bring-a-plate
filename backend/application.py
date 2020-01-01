@@ -2,7 +2,8 @@ from flask_migrate import Migrate
 
 from app import blueprint
 from app.main import create_app, db
-from app.main.model import user
+from app.main.model import user, allergen
+from app.main.util import test_data
 
 application = create_app()
 application.register_blueprint(blueprint)
@@ -19,6 +20,7 @@ def home():
 @application.before_first_request
 def create_tables():
     db.create_all()
+    test_data.go()
 
 
 if __name__ == "__main__":

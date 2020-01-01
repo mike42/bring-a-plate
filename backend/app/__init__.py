@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_restplus import Api
 
 from app.main.controller.allergen_controller import allergen_ns
-from app.main.controller.special_preparation import special_preparation_ns
+from app.main.controller.special_preparation_controller import special_preparation_ns
 from app.main.controller.event_controller import event_ns
 from app.main.controller.dish_controller import dish_ns
 from app.main.controller.user_controller import user_ns
