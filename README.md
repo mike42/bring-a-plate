@@ -21,13 +21,9 @@ The front-end is a Javascript (React) single-page application. Build it as follo
 The back-end is a Python (Flask) WSGI application. It does not need to be built, but dependencies will need to be loaded into a virtual env.
 
 ```bash
-(export FLASK_APP=application.py && \
-    cd backend && \
+(cd backend && \
     python3 -m venv venv && \
-    ./venv/bin/pip install -r requirements.txt && \
-    ./venv/bin/flask db init && \
-    ./venv/bin/flask db migrate && \
-    ./venv/bin/flask db upgrade)
+    ./venv/bin/pip install -r requirements.txt)
 ```
 
 ## Deployment

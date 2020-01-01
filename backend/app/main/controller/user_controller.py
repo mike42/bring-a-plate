@@ -1,5 +1,7 @@
 from flask_restplus import Resource, Namespace
 
+from app.main.model.user import User
+
 user_ns = Namespace('User', description='User operations')
 
 
@@ -9,4 +11,4 @@ class UserResource(Resource):
         """
         List users
         """
-        return []
+        return User.query.all()

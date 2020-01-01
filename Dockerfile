@@ -1,6 +1,4 @@
 FROM debian:buster
-COPY ./frontend/build /var/www/html/
-COPY ./backend /var/www/bring-a-plate/
 
 # Apt dependencies
 RUN apt-get update && apt-get install -y \
@@ -8,15 +6,13 @@ RUN apt-get update && apt-get install -y \
     libapache2-mod-wsgi-py3 \
     python3-venv
 
+COPY --chown=www-data:www-data ./frontend/build /var/www/html/
+COPY --chown=www-data:www-data ./backend /var/www/bring-a-plate/
+
 # Re-build python virtualenv (contains abolute paths; best to exclude anything added locally)
-# also prepare blank database
-RUN (export FLASK_APP=application.py && \
-    cd /var/www/bring-a-plate/ && \
+RUN (cd /var/www/bring-a-plate/ && \
     python3 -m venv venv && \
-    ./venv/bin/pip install -r requirements.txt && \
-    ./venv/bin/flask db init && \
-    ./venv/bin/flask db migrate && \
-    ./venv/bin/flask db upgrade)
+    ./venv/bin/pip install -r requirements.txt)
 
 # Prepare apache to host as WSGI app
 ENV APACHE_LOG_DIR /var/log/apache2

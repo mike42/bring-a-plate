@@ -1,5 +1,5 @@
 *.db
-migration
+migrations
 __pycache__
 venv/
 
