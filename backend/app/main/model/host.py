@@ -1,9 +1,12 @@
+from sqlalchemy.orm import relationship
+
+from .weak_entities import event_has_host
 from .. import db, flask_bcrypt
 
 
-# Based on example https://github.com/cosmic-byte/flask-restplus-boilerplate
+# Based on 'User' example https://github.com/cosmic-byte/flask-restplus-boilerplate
 class Host(db.Model):
-    """ User Model for storing user related details """
+    """ Event hosts """
     __tablename__ = "host"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -11,6 +14,10 @@ class Host(db.Model):
     admin = db.Column(db.Boolean, nullable=False, default=False)
     username = db.Column(db.String(50), unique=True)
     password_hash = db.Column(db.String(100))
+    events = relationship(
+        "Event",
+        secondary=event_has_host,
+        back_populates="hosts")
 
     @property
     def password(self):

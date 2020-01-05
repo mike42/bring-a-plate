@@ -1,5 +1,5 @@
 from flask_login import login_required
-from flask_restplus import Namespace, Resource, fields
+from flask_restplus import Namespace, Resource, fields, abort
 
 from app.main.model.allergen import Allergen
 
@@ -16,7 +16,10 @@ class AllergenResource(Resource):
     @allergen_ns.marshal_list_with(allergen_dto)
     @login_required
     def get(self, id):
-        return Allergen.query.filter_by(id=id).first()
+        item = Allergen.query.filter_by(id=id).first()
+        if not item:
+            abort(404, 'Allergen not found')
+        return item
 
 
 @allergen_ns.route('/')

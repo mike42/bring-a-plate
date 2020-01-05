@@ -15,6 +15,7 @@ class Config:
     SESSION_COOKIE_HTTPONLY = True
     REMEMBER_COOKIE_HTTPONLY = True
     RESTPLUS_VALIDATE = True
+    ERROR_404_HELP = False
     DEBUG = False
 
 

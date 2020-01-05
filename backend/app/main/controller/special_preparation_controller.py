@@ -1,5 +1,6 @@
 from flask_login import login_required
-from flask_restplus import Resource, Namespace, fields
+from flask_restplus import Resource, Namespace, fields, abort
+
 from app.main.model.special_preparation import SpecialPreparation
 
 special_preparation_ns = Namespace('Special preparation', description='Special preparation operations')
@@ -15,7 +16,10 @@ class SpecialPreparationResource(Resource):
     @login_required
     @special_preparation_ns.marshal_list_with(special_preparation_dto)
     def get(self, id):
-        return SpecialPreparation.query.filter_by(id=id).first()
+        item = SpecialPreparation.query.filter_by(id=id).first()
+        if not item:
+            abort(404, 'SpecialPreparation not found')
+        return item
 
 
 @special_preparation_ns.route('/')

@@ -26,7 +26,8 @@ class AuthResource(Resource):
         """
         Retrieve information about the active user
         """
-        # TODO define data structure here so that the front-end knows whether to display a login box
+        # TODO define data structure here so that the front-end knows whether to display a login box, or
+        # whether host vs. guest interface should be used
         if current_user.is_anonymous:
             return {'message': 'Not authenticated'}
         return {'message': current_user.id}
