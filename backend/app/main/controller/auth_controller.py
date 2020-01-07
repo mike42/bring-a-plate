@@ -28,9 +28,13 @@ class AuthResource(Resource):
         """
         # TODO define data structure here so that the front-end knows whether to display a login box, or
         # whether host vs. guest interface should be used
-        if current_user.is_anonymous:
-            return {'message': 'Not authenticated'}
-        return {'message': current_user.id}
+        if not current_user.is_anonymous:
+            if current_user.is_host():
+                return {'name': current_user.host.username, 'type': 'HOST'}
+            else:
+                return {'name': current_user.guest.name, 'type': 'GUEST'}
+        else:
+            return {'message': 'Not authenticated'}, 401
 
 
 @auth_ns.route('/login/host')

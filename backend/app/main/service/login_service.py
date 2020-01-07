@@ -1,7 +1,6 @@
 from flask import jsonify
 from flask_login import LoginManager, UserMixin, current_user
 from flask_restplus import abort
-from flask_restplus._http import HTTPStatus
 
 from app.main.model.host import Host
 from app.main.model.invitation import Invitation
@@ -29,7 +28,7 @@ class HostUser(BaseUser):
 class GuestUser(BaseUser):
     def __init__(self, guest):
         """
-        :type guest: Guest
+        :type guest: Invitation
         """
         self.guest = guest
         self.id = "guest:%d" % guest.id
@@ -59,4 +58,4 @@ def load_user(user_id):
 @login_manager.unauthorized_handler
 def unauthorized():
     if current_user.is_anonymous:
-        abort(HTTPStatus.UNAUTHORIZED, 'You must log in to access this resource')
+        abort(401, 'You must log in to access this resource')
