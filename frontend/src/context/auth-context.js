@@ -3,12 +3,13 @@ import {useAsync} from 'react-async'
 import axios from 'axios';
 
 async function bootstrapAppData() {
-    const resp = await axios.get('/api/auth/');
-    console.log("/api/auth/ -> ", resp.data);
-    if (resp.status < 200 || resp.status > 299) {
+    try {
+        const resp = await axios.get('/api/auth/');
+        return { user: resp.data }
+    } catch (e) {
+        // Failed request of non-2XX return code -> assume user is not logged in
         return {user: null}
     }
-    return { user: resp.data }
 }
 
 const AuthContext = React.createContext();
@@ -45,9 +46,9 @@ function AuthProvider(props) {
             )
         }
     }
-    const loginGuest = form => axios.post('/auth/login/guest', form).then(reload);
-    const loginHost = form => axios.post('/auth/login/user', form).then(reload);
-    const logout = () => axios.post('/auth/logout').then(reload);
+    const loginGuest = form => axios.post('/api/auth/login/guest', form).then(reload);
+    const loginHost = form => axios.post('/api/auth/login/host', form).then(reload);
+    const logout = () => axios.post('/api/auth/logout', {}).then(reload);
     return (
         <AuthContext.Provider value={{data, loginGuest, logout, loginHost}} {...props} />
     )
