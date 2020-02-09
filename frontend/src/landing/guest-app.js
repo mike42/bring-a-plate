@@ -7,6 +7,7 @@ function GuestApp() {
     const {logout} = useAuth();
     return <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
+             {/* eslint-disable-next-line */}
             <a className="navbar-brand" href="#">#</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -17,6 +18,7 @@ function GuestApp() {
 
         <div>
             <p>Welcome guest {user.name}</p>
+             {/* eslint-disable-next-line */}
             <a href="#" onClick={logout}>Logout</a>
         </div>
     </div>;

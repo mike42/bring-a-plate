@@ -7,6 +7,7 @@ function HostApp() {
     const {logout} = useAuth();
     return <div>
         <p>Welcome host {user.name}</p>
+        {/* eslint-disable-next-line */}
         <a href="#" onClick={logout}>Logout</a>
     </div>;
 }

@@ -76,6 +76,7 @@ function UnauthenticatedApp() {
                         </div>
 
                         <div className="landing-info-card">
+                            {/* eslint-disable-next-line */}
                             <a name="host"></a>
                             <h3>Event hosts</h3>
                             <p>Log in here to manage your events.</p>
