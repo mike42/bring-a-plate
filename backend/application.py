@@ -1,3 +1,5 @@
+from time import sleep
+
 from flask_migrate import Migrate
 
 from app import blueprint
@@ -12,6 +14,10 @@ login_manager.init_app(application)
 
 migrate = Migrate(application, db)
 
+# Small delay before each request, uncomment when testing loading animations!
+# @application.before_request
+# def delay():
+#     sleep(0.5)
 
 @application.route("/")
 def home():

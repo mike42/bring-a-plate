@@ -15,18 +15,17 @@ export function GuestLoginForm({onSubmit, buttonText}) {
     }
 
     return (
-        <form
-            onSubmit={handleSubmit}>
-            <label htmlFor="code">Invitation code</label>
-            <input id="code"/>
-            <div>
-                <button type="submit">
-                    {buttonText} {isPending ? <span>lalala</span> : null}
-                </button>
-            </div>
+        <form className="form-group"
+              onSubmit={handleSubmit}>
             {isRejected ? (
-                <div css={{color: 'red'}}>{error ? error.message : null}</div>
+                <div className="bp-guest-login-error">{error ? 'Login failed' : null}</div>
             ) : null}
+            <div className="form-group">
+                <input autoFocus placeholder="Invitation code" autocomplete="off" className="form-control" id="code"/>
+            </div>
+            <button type="submit" disabled={isPending} className="btn btn-primary">
+                {buttonText}
+            </button>
         </form>);
 }
 
@@ -46,18 +45,22 @@ export function HostLoginForm({onSubmit, buttonText}) {
 
     return (
         <form
-            onSubmit={handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input id="username"/>
-            <label htmlFor="password">Password</label>
-            <input id="password"/>
+            onSubmit={handleSubmit} className="form-group">
+            {isRejected ? (
+                <div className="bp-guest-login-error">{error ? 'Login failed' : null}</div>
+            ) : null}
+            <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input class="form-control" id="username"/>
+            </div>
+            <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input class="form-control"  type="password" id="password"/>
+            </div>
             <div>
-                <button type="submit">
-                    {buttonText} {isPending ? <span>lalala</span> : null}
+                <button className="btn btn-primary" disabled={isPending} type="submit">
+                    {buttonText}
                 </button>
             </div>
-            {isRejected ? (
-                <div css={{color: 'red'}}>{error ? error.message : null}</div>
-            ) : null}
         </form>);
 }
