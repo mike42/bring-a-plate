@@ -55,10 +55,6 @@
     height: 4rem;
 }
 
-.bp-logo img {
-    width: 100%;
-}
-
 .bp-landing {
     color: #fff;
     background: #3ea9f5;
@@ -115,7 +111,7 @@
 }
 
 .bp-foot-outer {
-    background: #2A2D35;
+    background: #2a2d35;
 }
 
 .bp-foot {
@@ -138,3 +134,16 @@
     max-width: 30rem;
     display: flex;
 }
+
+/* Guest interface */
+.container-wrapper-light {
+    background: #fff;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+}
+
+.bp-navbar {
+    color: #fff;
+    background: #3ea9f5 !important;
+}
+
