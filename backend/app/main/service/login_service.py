@@ -12,6 +12,9 @@ class BaseUser(UserMixin):
     def is_host(self):
         raise NotImplementedError()
 
+    def numeric_id(self):
+        raise NotImplementedError()
+
 
 class HostUser(BaseUser):
     def __init__(self, host):
@@ -23,6 +26,9 @@ class HostUser(BaseUser):
 
     def is_host(self):
         return True
+
+    def numeric_id(self):
+        return self.host.id
 
 
 class GuestUser(BaseUser):
@@ -36,6 +42,8 @@ class GuestUser(BaseUser):
     def is_host(self):
         return False
 
+    def numeric_id(self):
+        return self.guest.id
 
 @login_manager.user_loader
 def load_user(user_id):

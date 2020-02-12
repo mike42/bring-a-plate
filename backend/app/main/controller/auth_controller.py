@@ -30,9 +30,9 @@ class AuthResource(Resource):
         # whether host vs. guest interface should be used
         if not current_user.is_anonymous:
             if current_user.is_host():
-                return {'name': current_user.host.username, 'type': 'HOST'}
+                return {'name': current_user.host.username, 'type': 'HOST', 'id': current_user.numeric_id()}
             else:
-                return {'name': current_user.guest.name, 'type': 'GUEST'}
+                return {'name': current_user.guest.name, 'type': 'GUEST', 'id': current_user.numeric_id()}
         else:
             return {'message': 'Not authenticated'}, 401
 

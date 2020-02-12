@@ -14,6 +14,7 @@ class Event(db.Model):
         "Host",
         secondary=event_has_host,
         back_populates="events")
+    invitations = relationship("Invitation")
 
     # TODO Start date, end date, location
     # created_on = db.Column(db.DateTime, nullable=False)

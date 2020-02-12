@@ -42,8 +42,11 @@ function HostApp() {
                         <td>example</td>
                         <td>Jones family</td>
                         <td><ul>
+                            {/* eslint-disable-next-line*/}
                             <li>Alice <a href="#" className="badge badge-danger">x</a></li>
+                            {/* eslint-disable-next-line*/}
                             <li>Bob <a href="#" className="badge badge-danger">x</a></li>
+                            {/* eslint-disable-next-line*/}
                             <li>Carl <a href="#" className="badge badge-danger">x</a></li>
                         </ul>
                         </td>

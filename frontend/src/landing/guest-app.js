@@ -3,6 +3,41 @@ import {useUser} from "../context/user-context";
 import {useAuth} from "../context/auth-context";
 import PageFooter from "../components/page-footer";
 
+const People = ({ people }) => {
+    return (
+        <div>
+            {people.map((person) => (
+                <div key={person.id} className="form-group row">
+                    <div className="col-sm-2 offset-sm-2 font-weight-bold">{person.name}</div>
+                    <div className="col-sm-6">{person.response}</div>
+                </div>
+            ))}
+        </div>
+    )
+};
+
+class GuestPeopleComponent extends React.Component {
+    state = {
+        people: []
+    };
+
+    componentDidMount() {
+        fetch('/api/invitation/' + this.props.user.id + '/people')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({people: data.items});
+            })
+            .catch(console.log);
+    }
+
+    render() {
+        return <div>
+            <p>Welcome, {this.props.user.name}!</p>
+            <People people={this.state.people}/>
+        </div>;
+    }
+}
+
 function GuestApp() {
     const user = useUser();
     const {logout} = useAuth();
@@ -25,11 +60,9 @@ function GuestApp() {
 
         <div className="container-wrapper-light">
             <div className="container">
-                <h3>Invitees</h3>
+                <h3>People</h3>
 
-                <div>
-                    <p>Welcome {user.name}</p>
-                </div>
+                <GuestPeopleComponent user={user}/>
 
                 <h3>Food</h3>
                 <div className="card mb-3">
