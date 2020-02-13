@@ -147,3 +147,12 @@
     background: #3ea9f5 !important;
 }
 
+/*!* *!*/
+
+
+/*.dropdown .nav-link {color:#fff; text-decoration: none;}*/
+/*.dropdown .dropdown-menu a{color: #000; text-decoration: none;}*/
+
+/*.dropdown .btn:hover {background: cyan; color:#000;}*/
+/*.dropdown .btn:active {background: cyan; color:#000;}*/
+/*.dropdown .btn:focus {background: cyan; color:#000;}*/

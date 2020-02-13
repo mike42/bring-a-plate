@@ -4,6 +4,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 from app.main import db
+from app.main.model.weak_entities import person_has_special_preparation, person_has_allergen
 
 
 class Attending(enum.Enum):
@@ -36,6 +37,16 @@ class InvitationPerson(db.Model):
     name = db.Column(db.String(255), unique=False, nullable=False)
     invitation_id = db.Column(db.Integer, ForeignKey('invitation.id'))
     response = db.Column(db.Enum(Attending), default=Attending.NO_RESPONSE)
+    special_preparations = relationship(
+        "SpecialPreparation",
+        secondary=person_has_special_preparation,
+        back_populates="people",
+        lazy='dynamic')
+    allergens = relationship(
+        "Allergen",
+        secondary=person_has_allergen,
+        back_populates="people",
+        lazy='dynamic')
 
     def __repr__(self):
         return "<InvitationPerson '{}'>".format(self.name)
