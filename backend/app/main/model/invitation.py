@@ -24,6 +24,7 @@ class Invitation(db.Model):
     event_id = db.Column(db.Integer, ForeignKey('event.id'))
 
     people = relationship("InvitationPerson")
+    dishes = relationship("Dish")
 
     def __repr__(self):
         return "<Invitation '{}'>".format(self.name)

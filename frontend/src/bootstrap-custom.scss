@@ -1,6 +1,30 @@
 // Set variables
 
 $primary: #3769cc;
+$body-color: #444;
+$secondary: #444;
 
 // Import bootstrap
 @import '~bootstrap/scss/bootstrap.scss';
+
+/* Responsive checkbox columns */
+.bp-checkbox-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin-bottom: 1rem;
+}
+
+.bp-checkbox-item {
+  flex: 0 32%;
+  @include media-breakpoint-down(md) {
+    flex: 0 49%;
+  }
+  @include media-breakpoint-down(xs) {
+    flex: 0 99%;
+  }
+}
+
+.bp-checkbox-item .form-group {
+  margin: 0.2rem;
+}

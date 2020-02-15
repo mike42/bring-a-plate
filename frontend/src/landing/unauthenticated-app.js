@@ -31,7 +31,6 @@ function UnauthenticatedApp() {
                         <GuestLoginForm onSubmit={loginGuest} buttonText="Let's go!"/>
                     </div>
                 </div>
-
             </div>
 
             <div className="container">
@@ -44,13 +43,11 @@ function UnauthenticatedApp() {
                                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                                 ullamco
                                 laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p>
-                                <ul>
-                                    <li>Example</li>
-                                    <li>Example</li>
-                                    <li>Example</li>
-                                </ul>
-                            </p>
+                            <ul>
+                                <li>Example</li>
+                                <li>Example</li>
+                                <li>Example</li>
+                            </ul>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                 ut
                                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation

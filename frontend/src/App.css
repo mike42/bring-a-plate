@@ -147,12 +147,38 @@
     background: #3ea9f5 !important;
 }
 
-/*!* *!*/
+.person-name-col { /* Matches button proportions */
+    border: 1px transparent;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+}
 
+.dropdown-menu {
+    border: 1px solid #444;
+}
 
-/*.dropdown .nav-link {color:#fff; text-decoration: none;}*/
-/*.dropdown .dropdown-menu a{color: #000; text-decoration: none;}*/
+.dropdown-item:hover, .dropdown-item:focus {
+    background: #444;
+    color: #fff;
+}
 
-/*.dropdown .btn:hover {background: cyan; color:#000;}*/
-/*.dropdown .btn:active {background: cyan; color:#000;}*/
-/*.dropdown .btn:focus {background: cyan; color:#000;}*/
+.card {
+    border: 1px solid rgb(108, 117, 125);
+}
+
+.card-header {
+    border-bottom: 1px solid rgb(108, 117, 125);
+}
+
+.btn-outline-secondary {
+    color: #444;
+}
+
+.bp-authenticated h3, .bp-authenticated h4, .bp-authenticated h5, .h3, .h4, .h5 {
+    color: #000 !important;
+    font-size: 16px !important;
+}
+
+.textbox-outlined {
+    border: 1px solid #444;
+}
