@@ -15,9 +15,9 @@ class FoodTileComponent extends React.Component {
                 <div>
                     <h5 className="mb-1">{this.props.food.name}
                         {this.props.food.special_preparations.map((prep, idx) => (
-                            <span>
+                            <span key={idx}>
                            &nbsp;
-                                <span key={idx} className="badge badge-success">{prep.name}</span>
+                                <span className="badge badge-success">{prep.name}</span>
                         </span>
                         ))}
                     </h5>
@@ -27,7 +27,7 @@ class FoodTileComponent extends React.Component {
                 <div className="mb-1">
                     <ButtonGroup>
                         <Button variant="outline-danger" size="sm" onClick={(e) => this.props.onRemove(e)}><FontAwesomeIcon icon={faTrash}/> Remove</Button>
-                        {/*<Button variant="outline-secondary" size="sm" onClick={(e) => this.props.onEdit(e)}><FontAwesomeIcon icon={faEdit}/> Edit</Button>*/}
+                        <Button variant="outline-secondary" size="sm" onClick={(e) => this.props.onEdit(e)}><FontAwesomeIcon icon={faEdit}/> Edit</Button>
                     </ButtonGroup>
                 </div>
                 }

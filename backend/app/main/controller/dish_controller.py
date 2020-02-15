@@ -78,6 +78,32 @@ class DishResource(Resource):
             abort(404, 'Dish not found')
         return the_dish
 
+    @dish_ns.expect(dish_dto)
+    @login_required
+    def put(self, id):
+        the_dish = Dish.query.filter_by(id=id).first()
+        if the_dish is None:
+            abort(404, 'Dish not found')
+        if request.json['dish_type'] == 'FoodType.DESSERT':
+            the_dish.dish_type = FoodType.DESSERT
+        elif request.json['dish_type'] == 'FoodType.SALAD':
+            the_dish.dish_type = FoodType.SALAD
+        elif request.json['dish_type'] == 'FoodType.MAIN':
+            the_dish.dish_type = FoodType.MAIN
+        else:
+            abort(400, 'Invalid dish type')
+        the_dish.name = request.json['name']
+        the_dish.desc = request.json['desc']
+        the_dish.special_preparations = []
+        for special_preparation in request.json['special_preparations']:
+            the_dish.special_preparations.append(SpecialPreparation.query.filter_by(id=special_preparation['id']).first())
+        the_dish.allergens = []
+        for allergen in request.json['allergens']:
+            the_dish.allergens.append(Allergen.query.filter_by(id=allergen['id']).first())
+
+        db.session.commit()
+        return {}
+
     @login_required
     def delete(self, id):
         the_dish = Dish.query.filter_by(id=id).first()
