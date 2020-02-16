@@ -1,9 +1,9 @@
-[!bring-a-plate](doc/embed/banner.png)](https://github.com/mike42/bring-a-plate)
+[![bring-a-plate](doc/embed/banner.png)](https://github.com/mike42/bring-a-plate)
 ===========================================================================
 
 [![Build Status](https://travis-ci.org/mike42/bring-a-plate.svg?branch=master)](https://travis-ci.org/mike42/bring-a-plate)
 
-**Bring a Plate* is a web app to co-ordinate attendee-catered events.
+**Bring a Plate** is a web app to co-ordinate attendee-catered events.
 
 ![Landing page](doc/screen-captures/landing-page-wide.png)
 
