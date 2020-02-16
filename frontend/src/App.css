@@ -182,3 +182,11 @@
 .textbox-outlined {
     border: 1px solid #444;
 }
+
+.table-sm .list-group-item {
+    padding: 0.3rem;
+}
+
+.borderless {
+    border: none;
+}

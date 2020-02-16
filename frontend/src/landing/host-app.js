@@ -2,11 +2,14 @@ import React from "react";
 import {useUser} from "../context/user-context";
 import {useAuth} from "../context/auth-context";
 import PageFooter from "../components/page-footer";
+import HostInvitationsComponent from "../components/host-invitations";
+import HostAttendeesComponent from "../components/host-attendees";
+import HostFoodComponent from "../components/host-food";
 
 function HostApp() {
     const user = useUser()
     const {logout} = useAuth();
-    return <div>
+    return <div className="bp-authenticated">
         <div className="bp-unauthenticated-backfill"></div>
 
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg bp-navbar">
@@ -30,48 +33,20 @@ function HostApp() {
                 </div>
 
                 <h3>Invitations</h3>
-
-                <table className="table table-sm">
-                    <tr>
-                        <th>Code</th>
-                        <th>Invitation</th>
-                        <th>People</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr>
-                        <td>example</td>
-                        <td>Jones family</td>
-                        <td><ul>
-                            {/* eslint-disable-next-line*/}
-                            <li>Alice <a href="#" className="badge badge-danger">x</a></li>
-                            {/* eslint-disable-next-line*/}
-                            <li>Bob <a href="#" className="badge badge-danger">x</a></li>
-                            {/* eslint-disable-next-line*/}
-                            <li>Carl <a href="#" className="badge badge-danger">x</a></li>
-                        </ul>
-                        </td>
-                        <td>
-                            <div className="btn-group">
-                                <button className="btn btn-outline-primary">+1</button>
-                                <button className="btn btn-outline-danger">Uninvite</button>
-
-                            </div>
-
-                        </td>
-                    </tr>
-
-                </table>
+                <HostInvitationsComponent/>
 
                 <h3>Attendees</h3>
+                <HostAttendeesComponent/>
 
                 <h3>Food</h3>
+                <HostFoodComponent/>
 
                 <h3>Log out</h3>
 
                 <p>Click the button below when you are ready to log out.</p>
 
                 {/* eslint-disable-next-line */}
-                <a className="btn btn-primary" href="#" onClick={logout}>Logout</a>
+                <a className="btn btn-primary" href="#" onClick={logout}>Log out</a>
             </div>
         </div>
 

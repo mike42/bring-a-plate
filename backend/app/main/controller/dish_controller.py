@@ -1,10 +1,14 @@
-from flask import request
-from flask_login import login_required
+import csv
+import io
+
+from flask import request, make_response
+from flask_login import login_required, current_user
 from flask_restplus import Resource, Namespace, fields, abort
 
 from app.main import db
 from app.main.model.allergen import Allergen
 from app.main.model.dish import Dish, FoodType
+from app.main.model.invitation import Invitation
 from app.main.model.special_preparation import SpecialPreparation
 
 dish_ns = Namespace('Dish', description='Dish operations')
@@ -65,6 +69,42 @@ class DishListResource(Resource):
         db.session.add(dish)
         db.session.commit()
         return {}
+
+
+@dish_ns.route('/export')
+class DishExportResource(Resource):
+    @login_required
+    def get(self):
+        """
+        List all dishes (CSV version)
+        """
+        if not current_user.is_host():
+            abort(403, "Forbidden")
+        all_dishes = Dish.query.all()
+        rows = []
+        for dish in all_dishes:
+            invitation = Invitation.query.filter_by(id=dish.invitation_id).first();
+            if invitation is None:
+                continue
+            rows.append({
+                'id': dish.id,
+                'dish_type': dish.dish_type,
+                'name': dish.name,
+                'desc': dish.desc,
+                'invitation_id': dish.invitation_id,
+                'invitation_name': invitation.name,
+                'allergens': ", ".join([x.name for x in dish.allergens]),
+                'special_preparation': ", ".join([x.name for x in dish.special_preparations]),
+            })
+        si = io.StringIO()
+        keys = rows[0].keys() if len(rows) > 0 else []
+        cw = csv.DictWriter(si, fieldnames=keys)
+        cw.writeheader()
+        cw.writerows(rows)
+        output = make_response(si.getvalue())
+        output.headers["Content-Disposition"] = "attachment; filename=attendees.csv"
+        output.headers["Content-type"] = "text/csv"
+        return output
 
 
 @dish_ns.response(404, 'Dish not found')
