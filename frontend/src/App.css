@@ -1,0 +1,192 @@
+/* Loading */
+.loading-holder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -moz-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+}
+
+/* A dark box sits behind the content for large displays */
+.bp-unauthenticated {
+    background: #fff;
+}
+
+.bp-unauthenticated-backfill {
+    background: #2A2D35;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -100;
+}
+
+/* Landing panel (light blue background) */
+.bp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+
+}
+
+.bp-logo {
+    display: flex;
+    align-items: center;
+}
+
+.bp-logo-title {
+    padding-left: 1rem;
+    font-size: 180%;
+    font-weight: 200;
+    color: #fff;
+}
+
+.bp-logo:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.bp-logo-img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.bp-landing {
+    color: #fff;
+    background: #3ea9f5;
+}
+
+.bp-guest-login-outer {
+
+}
+
+.bp-guest-login {
+    max-width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 2rem 6rem;
+}
+
+.bp-guest-login h3, .bp-guest-login p {
+    text-align: center;
+}
+
+.bp-guest-login p {
+    margin-bottom: 1rem;
+}
+
+.bp-guest-login button, .bp-guest-login-error {
+    width: 100%;
+}
+
+.bp-guest-login-error {
+    text-align: center;
+    background: lightpink;
+    border-radius: 4px;
+    color: #dc3545;
+    margin-bottom: 1rem;
+}
+
+/* Under the landing panel */
+.bp-info {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.landing-info-card {
+    margin: 2rem;
+}
+
+.landing-info-card h3 {
+    color: #000;
+    font-size: 1rem;
+}
+
+.landing-info-card {
+    color: #444;
+}
+
+.bp-foot-outer {
+    background: #2a2d35;
+}
+
+.bp-foot {
+    padding: 1rem 2rem;
+    color: #fff;
+}
+
+.bp-foot-img {
+    width: 4rem;
+    height: 4rem;
+    padding: 1rem;
+}
+
+.foot-right {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+}
+
+.bp-foot-inner {
+    max-width: 30rem;
+    display: flex;
+}
+
+/* Guest interface */
+.container-wrapper-light {
+    background: #fff;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+}
+
+.bp-navbar {
+    color: #fff;
+    background: #3ea9f5 !important;
+}
+
+.person-name-col { /* Matches button proportions */
+    border: 1px transparent;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+}
+
+.dropdown-menu {
+    border: 1px solid #444;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background: #444;
+    color: #fff;
+}
+
+.card {
+    border: 1px solid rgb(108, 117, 125);
+}
+
+.card-header {
+    border-bottom: 1px solid rgb(108, 117, 125);
+}
+
+.btn-outline-secondary {
+    color: #444;
+}
+
+.bp-authenticated h3, .bp-authenticated h4, .bp-authenticated h5, .h3, .h4, .h5 {
+    color: #000 !important;
+    font-size: 16px !important;
+}
+
+.textbox-outlined {
+    border: 1px solid #444;
+}
+
+.table-sm .list-group-item {
+    padding: 0.3rem;
+}
+
+.borderless {
+    border: none;
+}

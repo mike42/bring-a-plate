@@ -1,74 +1,142 @@
-# Bring a Plate
+[![bring-a-plate](doc/embed/banner.png)](https://github.com/mike42/bring-a-plate)
+===========================================================================
 
-This is a web app to help you co-ordinate "bring a plate" events, by giving each guest a unique web link. They can use the app to view what food is being brought, and what dietary requirements other guests have (although they can't see the guest list!).
+[![Build Status](https://travis-ci.org/mike42/bring-a-plate.svg?branch=master)](https://travis-ci.org/mike42/bring-a-plate)
 
-![Screenshot 01 (user)](doc/screenshot01-user.png)
+**Bring a Plate** is a web app to co-ordinate attendee-catered events.
 
-For the organiser, there is a special interface for creating the invitation links. It allows the food, invitation and guest lists to be exported as a spreadsheet.
+![Landing page](doc/screen-captures/landing-page-wide.png)
 
-![Screenshot 02 (admin)](doc/screenshot02-admin.png)
+### How it works 
 
-The spreadsheet export is helpful for your other event management tasks:
+The host of the event distributes login codes to each guest.
 
-- Create invitations with a mail merge
-- Generate QR codes for web links
-- Produce food labels which list allergens and specially mark vegetarian food
-- Prepare name tags
+![Guest interface](doc/screen-captures/guest-interface.png)
 
-## Set up
+When a guest logs in, they can specify dietary requirements for each person on their invitation, and can also view the food which other guests are bringing.
 
-The following setup steps will get the app running on a recent version of Debian.
+![Guest dietary requirements](doc/screen-captures/guest-dietary-requirements.png)
 
-Install dependencies
+Anonymous information about the prevalance of different dietary requirements at the event is visible to all guests.
+
+![Guest dietary requirements](doc/screen-captures/dietary-requirement-info.png)
+
+Guests then have good information to choose what to bring, and are also prompted to label their dishes according to any allergens and special preparation that's gone into it.
+
+![Guest dietary requirements](doc/screen-captures/edit-food.png)
+
+Event hosts have a rudimentary interface to manage their guest list.
+
+![Host interface](doc/screen-captures/host-interface.png)
+
+This page also allows them to export information to spreadsheets, so that that they can perform other event-management tasks, sugh as:
+
+- Creating invitations with a mail merge
+- Producing food labels which list allergens and special preparation for food (eg. vegetarian or halal)
+- Preparing name tags
+
+## Tech
+
+The front-end is React/Bootstrap, while the back-end is a Flask (Python) app.
+
+Data interchange is performed over REST. The app ships with an OpenAPI spec for power users, which can be exercised through Swagger.
+
+![API doc](doc/screen-captures/swagger-doc.png)
+
+## Build process
+
+### Front-end
+
+The front-end is a Javascript (React) single-page application. Build it as follows:
+
+```bash
+(cd frontend && \
+    npm install &&
+    npm run-script build)
+```
+
+### Back-end
+
+The back-end is a Python (Flask) WSGI application. It does not need to be built, but dependencies will need to be loaded into a virtual env.
+
+```bash
+(cd backend && \
+    python3 -m venv venv && \
+    ./venv/bin/pip install -r requirements.txt)
+```
+
+## Deployment
+
+### Local Docker
+
+To build a container image of `bring-a-plate` and start it locally:
+
+```bash
+docker build -t bring-a-plate:0.0.1 .
+docker run -p 8080:80 bring-a-plate:0.0.1
+```
+
+The app will then be accessible at `http://localhost:8080`.
+
+### Kubernetes cluster
+
+This repository also bundles a Kubnernetes deployment YML definition. Use the following command to build and deploy a `bring-a-plate` container image on a local Minikube cluster:
+
+```bash
+eval $(minikube docker-env)
+docker build -t bring-a-plate:0.0.1 .
+kubectl apply -f deploy/deployment.yml
+```
+
+You can then access the app on port 8080 on the relevant cluster IP (you may need `minikube tunnel` to make this IP visible from the local machine).
 
 ```
-sudo apt-get install apache2 php mariadb-server php-mysql
+$ kubectl get service
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+bring-a-plate-service   ClusterIP   10.96.189.123   <none>        8080/TCP   6m54s
 ```
 
-Create a database user account. Replace '...' with a strong password.
+### Manual installation
 
-```
-$ sudo mariadb
-> CREATE DATABASE `bring-a-plate`;
-> CREATE USER 'bring-a-plate' IDENTIFIED BY '...';
-> GRANT USAGE ON *.* TO 'bring-a-plate'@'%' IDENTIFIED BY '...';
-> GRANT ALL privileges ON `bring-a-plate`.* TO 'bring-a-plate'@'%' IDENTIFIED BY '...';
-```
+The following steps assume that you are running a recent Debian GNU/Linux or Ubuntu system. The app needs to run in a web server which does the following:
 
-Import the database schema:
+- Serve the front-end as static resources
+- Run the back-end via a WSGI container
 
-```
-mysql --user=bring-a-plate bring-a-plate --password < lib/database/bring-a-plate.sql
+Install dependencies:
+
+```bash
+sudo apt-get install apache2 libapache2-mod-wsgi-py3
 ```
 
-- Place the contents of this repo available over HTTP:
+Copy in the front-end:
 
-```
-git clone git@github.com:mike42/bring-a-plate.git
-cd bring-a-plate
-sudo ln -s $(pwd) /var/www/html/bring-a-plate
+```bash
+sudo cp -Rv frontend/build/* /var/www/html/
 ```
 
-- Copy "site.example" to "site" and edit config.php to add an account which can access this database.
-- Log in to your site (load 'admin.php') to verify that it's working.
-- Secure your admin.php (see below)
-- Write up your event information in `content.php`.
+Place the back-end somewhere outside the webroot:
 
-## How to secure admin.php
+```bash
+sudo mkdir -p /var/www/bring-a-plate
+sudo cp -Rv backend/* /var/www/bring-a-plate
+```
 
-The admin.php file lets you view and edit the invitations. If you don't secure it, then anybody can change the guest list!
+Add these lines to `/etc/apache2/sites-enabled/000-default.conf`, just before `</VirtualHost>`
 
-With Apache, you need to set up [Authentication](http://httpd.apache.org/docs/current/howto/auth.html) for it. On most shared web hosts, you can log in and put something like this in the admin/ folder:
+```bash
+WSGIDaemonProcess bring-a-plate home=/var/www/bring-a-plate python-home=/var/www/bring-a-plate/venv
+WSGIProcessGroup bring-a-plate
+WSGIApplicationGroup %{GLOBAL}
+WSGIScriptAlias /api /var/www/bring-a-plate/application.py/api
+<Directory /var/www/bring-a-plate/>
+    Require all granted
+</Directory>
+```
 
-    AuthUserFile /home/username/.htpasswd
-    AuthName "Login Required"
-    AuthType Basic
+Restart apache.
 
-    require valid-user
+```bash
+systemctl restart apache2
+```
 
-And then the htpasswd program would be used to generate the logins.
-
-## External libraries
-
-- [jQuery](http://jquery.com/)
-- [Twitter Bootstrap](http://getbootstrap.com/)

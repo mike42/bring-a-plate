@@ -1,0 +1,5 @@
+*.db
+migrations
+__pycache__
+venv/
+

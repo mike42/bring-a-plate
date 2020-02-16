@@ -1,0 +1,19 @@
+---
+dist: bionic
+language: node_js
+node_js:
+  - "stable"
+
+addons:
+  apt:
+    packages:
+      - python3-venv
+
+cache:
+  directories:
+    - frontend/node_modules
+    - backend/venv
+
+script:
+  - ./build.sh
+...

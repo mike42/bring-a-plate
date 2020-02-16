@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bring-a-plate-deployment
+  labels:
+    app: bring-a-plate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bring-a-plate
+  template:
+    metadata:
+      labels:
+        app: bring-a-plate
+    spec:
+      containers:
+      - name: bring-a-plate
+        image: bring-a-plate:0.0.1
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bring-a-plate-service
+  labels:
+    app: bring-a-plate
+spec:
+  selector:
+    app: bring-a-plate
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+
