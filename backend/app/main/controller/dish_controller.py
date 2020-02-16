@@ -102,7 +102,7 @@ class DishExportResource(Resource):
         cw.writeheader()
         cw.writerows(rows)
         output = make_response(si.getvalue())
-        output.headers["Content-Disposition"] = "attachment; filename=attendees.csv"
+        output.headers["Content-Disposition"] = "attachment; filename=food.csv"
         output.headers["Content-type"] = "text/csv"
         return output
 

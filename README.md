@@ -1,8 +1,47 @@
-# Bring a Plate
+[!bring-a-plate](doc/embed/banner.png)](https://github.com/mike42/bring-a-plate)
+===========================================================================
 
 [![Build Status](https://travis-ci.org/mike42/bring-a-plate.svg?branch=master)](https://travis-ci.org/mike42/bring-a-plate)
 
-"Bring a Plate" is a web app to co-ordinate attendee-catered events.
+**Bring a Plate* is a web app to co-ordinate attendee-catered events.
+
+![Landing page](doc/screen-captures/landing-page-wide.png)
+
+### How it works 
+
+The host of the event distributes login codes to each guest.
+
+![Guest interface](doc/screen-captures/guest-interface.png)
+
+When a guest logs in, they can specify dietary requirements for each person on their invitation, and can also view the food which other guests are bringing.
+
+![Guest dietary requirements](doc/screen-captures/guest-dietary-requirements.png)
+
+Anonymous information about the prevalance of different dietary requirements at the event is visible to all guests.
+
+![Guest dietary requirements](doc/screen-captures/dietary-requirement-info.png)
+
+Guests then have good information to choose what to bring, and are also prompted to label their dishes according to any allergens and special preparation that's gone into it.
+
+![Guest dietary requirements](doc/screen-captures/edit-food.png)
+
+Event hosts have a rudimentary interface to manage their guest list.
+
+![Host interface](doc/screen-captures/host-interface.png)
+
+This page also allows them to export information to spreadsheets, so that that they can perform other event-management tasks, sugh as:
+
+- Creating invitations with a mail merge
+- Producing food labels which list allergens and special preparation for food (eg. vegetarian or halal)
+- Preparing name tags
+
+## Tech
+
+The front-end is React/Bootstrap, while the back-end is a Flask (Python) app.
+
+Data interchange is performed over REST. The app ships with an OpenAPI spec for power users, which can be exercised through Swagger.
+
+![API doc](doc/screen-captures/swagger-doc.png)
 
 ## Build process
 
